@@ -1,0 +1,35 @@
+{% extends "portal/base.html" %}
+
+{% block menu %}
+{% if user.is_authenticated %}
+	<div id="mainmenu" class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+		<ul class="pure-menu-list">
+			<li class="pure-menu-item"><a href="{% url 'dashboard' %}" class="pure-menu-link">Dashboard</a></li>
+			<li class="pure-menu-item"><a href="{% url 'quick-select-state' %}" class="pure-menu-link">Quick Quote</a></li>
+			<li class="pure-menu-item"><a href="{% url 'agency-list' %}" class="pure-menu-link">Agencies</a></li>
+			<li class="pure-menu-item"><a href="{% url 'agent-list' %}" class="pure-menu-link">Agents</a></li>
+			<li class="pure-menu-item"><a href="{% url 'insured-list' %}" class="pure-menu-link">Insureds</a></li>
+			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Quotes</a></li>
+			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Policies</a></li>
+			{% if user.is_staff %}
+				<li class="pure-menu-item"><a href="/admin/" class="pure-menu-link">Admin</a></li>
+			{% endif %}
+		</ul>
+	</div>
+{% else %}
+	<div id="mainmenu" class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+		<ul class="pure-menu-list">
+			<li class="pure-menu-item">
+				<a href="{% url 'quick-select-state' %}" class="pure-menu-link">
+					Quick Quote
+				</a>
+			</li>
+			<li class="pure-menu-item">
+				<a href="{% url 'login' %}" class="pure-menu-link">
+					Sign In
+				</a>
+			</li>
+		</ul>
+	</div>
+{% endif %}
+{% endblock %}

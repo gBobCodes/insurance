@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %} | CARE Insurance</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="{% static 'portal/font-awesome-4.6.3/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.8.0/jquery.modal.min.css" />
+	<link rel="stylesheet" href="{% static 'portal/css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'portal/css/menu.css' %}">
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.8.0/jquery.modal.min.js"></script>
+	<script src="{% static 'portal/js/base.js' %}"></script>
+	<script src="{% static 'portal/js/menu.js' %}"></script>
+
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+{% block body %}
+<div class="care-locked-header">
+	<div class="pure-g">
+		<div class="pure-u-1-3">
+			<img class="pure-img" src="{% static 'portal/img/care-logo-300x84.png' %}" alt="CARE" width="150">
+		</div>
+		
+		<div class="pure-u-1-3">
+			{% block message %}
+				<div id="message" class="care-message" style="display:none"></div>
+			{% endblock %}
+		</div>
+
+		<div class="pure-u-1-3">
+			{% if user.is_authenticated %}
+				<div class="pure-menu pure-menu-horizontal care-menu-center">
+					<ul class="pure-menu-list">
+						<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+							<a href="#" id="usermenu" class="pure-menu-link">
+								{{ user.first_name }} {{ user.last_name }} 
+							</a>
+							<ul class="pure-menu-children care-menu-left">
+								<li class="pure-menu-item">
+									<a href="{% url 'user_change' %}" rel="modal:open" class="pure-menu-link">My Account</a>
+								</li>
+								<li class="pure-menu-item">
+									<a href="{% url 'password_change' %}" rel="modal:open" class="pure-menu-link">Change Password</a>
+								</li>
+								<li class="pure-menu-item">
+									<a href="{% url 'logout' %}" class="pure-menu-link">Sign Out</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+	{% endblock %}
+
+	<div class="small-break">
+	</div>
+
+	<div class="care-menu-border">
+		{% block menu %}{% endblock %}
+	</div>
+
+	{% block actions %}{% endblock %}
+
+</div> <!-- end care-locked-header -->
+
+<div class="care-body">	
+	{% block pre-content %}{% endblock %}
+
+	{% block content %}{% endblock %}
+</div>
+</body>
+
+</html>

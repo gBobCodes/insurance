@@ -1,0 +1,30 @@
+{% load static %}
+<div class="care-modal-header">
+	Your Account
+</div>
+<br>
+<form
+	class="pure-form pure-form-aligned js-ajaxable-form"
+	method="POST"
+	action="{% url 'user_change' %}"
+>
+	{% csrf_token %}
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="{{ form.first_name.auto_id }}">First Name</label>
+			{{ form.first_name }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.last_name.auto_id }}">Last Name</label>
+			{{ form.last_name }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.email.auto_id }}">Email Address</label>
+			{{ form.email }}
+		</div>
+		<div class="pure-controls">
+			<button type="submit" class="pure-button care-button-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+<script src="{% static 'portal/js/shared/ajax_submit_form.js' %}"></script>

@@ -1,0 +1,25 @@
+.care-menu-center {
+	text-align: center;
+}
+
+.care-menu-left {
+	text-align: left;
+}
+
+.care-menu-right {
+	text-align: right;
+}
+
+.care-menu-selected {
+	background: #FF4E00;
+	border-radius: 6px;
+}
+
+.care-menu-selected-text {
+	color: white;
+}
+
+.care-menu-selected-text:hover {
+	color: #777777;
+	border-radius: 4px;
+}

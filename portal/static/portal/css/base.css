@@ -1,0 +1,133 @@
+body {
+	margin: 6px;
+}
+
+/* top header and menu are fixed at the top of each page */
+div.care-locked-header {
+	/*
+	background-color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	*/
+	/* The jquerymodal.com z-index is 2, so we use 1 for our menu. */
+	/*z-index: 1;
+	width: 100%;
+	padding-top: 6px;
+	padding-left: 6px;
+	*/
+}
+
+/* rest of the page is scrollable */
+div.care-body {
+	/*
+	position: relative;
+	top: 106px;
+	left: 6px;
+	*/
+}
+
+/* border around the main menu */
+.care-menu-border {
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-width: 2px;
+	border-color: #FF4E00;
+}
+
+.care-button-primary {
+	color: #FFFFFF;
+	background: #0E025B;
+}
+
+.care-edit-button {
+	font-size: 80%;
+}
+
+.care-field-error {
+	color: red;
+}
+
+.care-filter-container {
+	border-top-style: solid;
+	border-width: 1px;
+	border-color: #ccc;
+	padding-left: 12px;
+	color: #FF4E00
+}
+
+div.care-form-card {
+	width: 100%;
+}
+
+legend.care-form-legend {
+	color: #FF4E00;
+	font-weight: bold;
+	border-top-style: solid;
+	border-bottom-style: none;
+	border-width: 1px;
+	border-color: #bbb;
+}
+
+.care-message {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #FF4E00;
+	border-radius: 16px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 4px;
+	color: #0E025B;
+	background-color: #ddd;
+	text-align: center;
+}
+
+.care-modal-header {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #0E025B;
+	border-radius: 4px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #0E025B;
+	background-color: #FF4E00;
+	text-align: center;
+	font-weight: bold;
+}
+
+.care-note {
+	height: 100px;
+	width: 300px;
+}
+
+.care-object-name {
+	padding-left: 16px;
+	padding-top: 10px;
+	font-weight: bold;
+}
+
+.care-other-title {
+	width: 72px;
+}
+
+.care-qq-field-error {
+	color: white;
+	background-color: #FF4E00;
+	border-radius: 4px;
+}
+
+.care-qq-header {
+	color: #FF4E00;
+	font-weight: bold;
+	padding-bottom: 10px;
+	
+}
+
+button.care-search-button {
+	border-radius: 16px;
+}
+
+.small-break {
+	padding-top: 6px;
+}
+

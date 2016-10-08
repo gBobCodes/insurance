@@ -1,0 +1,54 @@
+{% load static %}
+
+<div class="care-modal-header">
+	{% if object %}
+		Update Agency
+	{% else %}
+		New Agency
+	{% endif %}
+</div>
+<br>
+<form
+	class="pure-form pure-form-aligned"
+	method="POST"
+	action="{% if object %} {% url 'agency-update' object.id %} {% else %} {% url 'agency-create' %} {% endif %}"
+>
+	{% csrf_token %}
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="{{ form.name.auto_id }}">Agency Name</label>
+			{{ form.name }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.office_phone.auto_id }}">Office Phone</label>
+			{{ form.office_phone }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.street.auto_id }}">Street Address</label>
+			{{ form.street }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.street.auto_id }}"></label>
+			{{ form.building }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.city.auto_id }}">City</label>
+			{{ form.city }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.state.auto_id }}">State</label>
+			{{ form.state }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.zip_code.auto_id }}">Zip Code</label>
+			{{ form.zip_code }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.note.auto_id }}">Notes</label>
+			{{ form.note }}
+		</div>
+		<div class="pure-controls">
+			<button type="submit" class="pure-button care-button-primary">Save</button>
+		</div>
+	</fieldset>
+</form>

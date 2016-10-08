@@ -1,0 +1,48 @@
+{% extends "portal/menu.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block pre-content %}
+<div class="care-object-name">
+	CARE Portal Access
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+	{% if user.is_authenticated %}
+	<p>Your account doesn't have access to this page. To proceed,
+	please login with an account that has access.</p>
+	{% else %}
+	<p>Please login to see this page.</p>
+	{% endif %}
+{% endif %}
+
+
+<form class="pure-form pure-form-aligned" method="post" action="{% url 'login' %}">
+	{% csrf_token %}
+	<input type="hidden" name="next" value="{{ next }}" />
+
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="{{ form.username.auto_id }}">Username</label>
+			{{ form.username }}
+		</div>
+
+		<div class="pure-control-group">
+			<label for="{{ form.password.auto_id }}">Password</label>
+			{{ form.password }}
+		</div>
+
+		<div class="pure-controls">
+			<button type="submit" class="pure-button care-button-primary">Sign In</button>
+		</div>
+	</fieldset>
+</form>
+
+{% endblock %}

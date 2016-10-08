@@ -1,0 +1,35 @@
+{% extends "portal/menu.html" %}
+{% load static %}
+{% block title %}Quick Quote{% endblock %}
+
+{% block head %}
+	<script src="{% static 'portal/js/shared/dob_datepicker.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<form class="pure-form pure-form-aligned" method="post" action="">
+{% csrf_token %}
+	<fieldset>
+		{{ form.as_p }}
+			<div class="pure-control-group">
+				<label>&nbsp;</label>
+				<button type="submit" class="pure-button care-button-primary">
+					<i class="fa fa-futbol-o"></i> Request Full Quote &nbsp;
+				</button>
+			</div>
+		</div>
+	</fieldset>
+
+</form>
+
+<div class="small-break"></div>
+<script>
+	$('.bob').hide();
+
+	$("#calculate").click(function( event ) {
+		event.preventDefault();
+		$('.bob').show();
+	});
+</script>
+{% endblock %}

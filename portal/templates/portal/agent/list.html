@@ -1,0 +1,104 @@
+{% extends "portal/menu.html" %}
+{% load static %}
+
+{% block title %}Agents{% endblock %}
+
+{% block pre-content %}
+<form class="pure-form" action="" method="GET">
+
+<div class="pure-g">
+	<div class="pure-u-1-5">
+		<p class="care-object-name">
+			Agents ( {{ agent_list|length }} )
+		</p>
+	</div>
+	<div class="pure-u-3-5">
+		<p>
+			{{ form.search }}
+			<button type="submit" class="pure-button care-search-button">
+				<i class="fa fa-search"></i>
+			</button>
+		</p>
+	</div>
+	<div class="pure-u-1-5">
+		<p>
+			<a href="{% url 'agent-create' %}"
+				class="pure-button care-button-primary"
+				rel="modal:open"
+			>
+				<i class="fa fa-plus"></i>
+				New Agent
+			</a>
+		</p>
+	</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="pure-g">
+	<div class="pure-u-1-5">
+		<div class="care-filter-container ">
+			<p> <i class="fa fa-filter"></i> Filter </p>
+			<p> {{ form.agency }} </p>
+			<p> {{ form.state }} </p>
+			<p> &nbsp; </p>
+		</div>
+	</div>
+	<div class="pure-u-4-5">
+		<table class="pure-table pure-table-striped">
+			{% if agent_list %}
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Mobile</th>
+						<th>Office</th>
+						<th>Agency</th>
+						<th>Notes</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				{% for agent in agent_list %}
+					<tr>
+						<td>{{ agent.name }}</td>
+						<td>{{ agent.email }}</td>
+						<td>{{ agent.mobile_phone }}</td>
+						<td>{{ agent.office_phone }}</td>
+						<td>{{ agent.agency }}</td>
+						<td>{{ agent.note }}</td>
+						<td>
+							<a href="{% url 'agent-update' agent.id %}"
+								class="pure-button care-edit-button"
+								rel="modal:open"
+							>
+								<i class="fa fa-pencil fa-sm"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<thead>
+					<tr>
+						<th> </th>
+					</tr>
+				</thead>
+				<tr>
+					<td>Use the Search or Filter options to find some agents.</td>
+				</tr>
+
+			{% endif %}
+		</table>
+	</div>
+</div>
+
+</form>
+
+<script src="{% static 'portal/js/shared/set_focus_first_element.js' %}"></script>
+<script>
+$(document).ready(function () {
+	{% if session_message %}
+		displayMessage('{{session_message}}');
+	{% endif %}
+});
+</script>
+{% endblock %}

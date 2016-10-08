@@ -1,0 +1,45 @@
+{% extends "portal/menu.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block head %}
+<script>
+
+function ajaxStates() {
+
+	$.ajax({
+		url: "{% url 'api-state-list' %}",
+		type: 'GET',
+		data: {
+			format: 'json'
+		},
+		error: function(data) {
+			console.log('ERROR');
+			console.log(data);
+		},
+		success: function(data) {
+			console.log('SUCCESS');
+			console.log(data);
+			$('#states').text("");
+			$.each(data, function(index) {
+				$('#states').append(data[index].name).append("<br>");
+			});
+		},
+	});
+}
+
+
+
+</script>
+{% endblock %}
+
+{% block pre-content %}
+<div class="care-object-name">
+	Dashboard
+</div>
+
+<button onclick="ajaxStates()"> Get States </button>
+<div id="states"></div>
+
+
+{% endblock %}

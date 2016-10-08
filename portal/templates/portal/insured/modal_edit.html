@@ -1,0 +1,58 @@
+{% load static %}
+
+{% block head %}
+	<script src="{% static 'portal/js/shared/dob_datepicker.js' %}"></script>
+{% endblock %}
+
+<div class="care-modal-header">
+	{% if object %}
+		Update Insured
+	{% else %}
+		New Insured
+	{% endif %}
+</div>
+<br>
+<form
+	class="pure-form pure-form-aligned"
+	method="POST"
+	action="{% if object %} {% url 'insured-update' object.id %} {% else %} {% url 'insured-create' %} {% endif %}"
+>
+	{% csrf_token %}
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="{{ form.name.auto_id }}">Insured Name</label>
+			{{ form.name }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.title.auto_id }}">Title</label>
+			{{ form.title }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.title_other.auto_id }}">Title if Other</label>
+			{{ form.title_other }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.email.auto_id }}">Email Address</label>
+			{{ form.email }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.mobile_phone.auto_id }}">Mobile Phone</label>
+			{{ form.mobile_phone }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.office_phone.auto_id }}">Office Phone</label>
+			{{ form.office_phone }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.note.auto_id }}">Date of Birth</label>
+			{{ form.dob }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.note.auto_id }}">Notes</label>
+			{{ form.note }}
+		</div>
+		<div class="pure-controls">
+			<button type="submit" class="pure-button care-button-primary">Save</button>
+		</div>
+	</fieldset>
+</form>

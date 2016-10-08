@@ -1,0 +1,49 @@
+{% extends "portal/menu.html" %}
+{% load static %}
+
+{% block title %}Agent{% endblock %}
+
+{% block pre-content %}
+<div class="care-object-name">
+	{% if object %}
+		Update Agent
+	{% else %}
+		New Agent
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+<form class="pure-form pure-form-aligned" method="post" action="">
+	{% csrf_token %}
+	<fieldset>
+		<div class="pure-control-group">
+			<label for="{{ form.name.auto_id }}">Agent Name</label>
+			{{ form.name }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.email.auto_id }}">Email Address</label>
+			{{ form.email }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.mobile_phone.auto_id }}">Mobile Phone</label>
+			{{ form.mobile_phone }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.office_phone.auto_id }}">Office Phone</label>
+			{{ form.office_phone }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.agency.auto_id }}">Agency</label>
+			{{ form.agency }}
+		</div>
+		<div class="pure-control-group">
+			<label for="{{ form.note.auto_id }}">Notes</label>
+			{{ form.note }}
+		</div>
+		<div class="pure-controls">
+			<button type="submit" class="pure-button care-button-primary">Save</button>
+		</div>
+	</fieldset>
+</form>
+{% endblock %}

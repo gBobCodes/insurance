@@ -1,0 +1,340 @@
+{% extends "portal/menu.html" %}
+{% load static humanize %}
+{% block title %}Quick Quote{% endblock %}
+
+{% block head %}
+	<script src="{% static 'portal/js/shared/dob_datepicker.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<form class="pure-form pure-form-aligned" method="POST" action="">
+{% csrf_token %}
+{{ form.state }}
+	<fieldset>
+		<div class="care-form-card">
+			<div class="care-qq-header">
+				Quick Quote for {{ form.state.initial }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.agent_name.auto_id }}">Agent Name</label>
+				{{ form.agent_name }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.agent_email.auto_id }}">Email</label>
+				{{ form.agent_email }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.agency_name.auto_id }}">Agency</label>
+				{{ form.agency_name }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<legend class="care-form-legend">Insured</legend>
+			<div class="pure-control-group">
+				<label for="{{ form.insured_name.auto_id }}">Insured Name</label>
+				{{ form.insured_name }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.title.auto_id }}">Title</label>
+				{{ form.title }} &nbsp; {{ form.title_other }}
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.title_other.errors }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.dob.auto_id }}">Date of Birth</label>
+				{{ form.dob }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.surgery.auto_id }}">Surgery</label>
+				{{ form.surgery }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.primary_specialty_name.auto_id }}">Specialty</label>
+				{{ form.primary_specialty_name }} {{ form.primary_specialty_percentage }}%
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.secondary_specialty_name.auto_id }}">Sub Specialty</label>
+				{{ form.secondary_specialty_name }} {{ form.secondary_specialty_percentage }}%
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.secondary_specialty_percentage.errors }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<legend class="care-form-legend">Primary Practice</legend>
+			<div class="pure-control-group">
+				<label for="{{ form.primary_practice_street.auto_id }}">Address</label>
+				{{ form.primary_practice_street }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.primary_practice_building.auto_id }}"></label>
+				{{ form.primary_practice_building }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.primary_practice_city.auto_id }}">City</label>
+				{{ form.primary_practice_city }}
+			</div>
+			<div class="pure-control-group">
+				<label>State</label>
+				{{ form.state.initial }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.primary_practice_zip_code.auto_id }}">Zip Code</label>
+				{{ form.primary_practice_zip_code }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.primary_practice_county.auto_id }}">County</label>
+				{{ form.primary_practice_county }}
+			</div>
+			<div class="pure-control-group">
+				<label>{{ form.state.initial }}</label>
+				 Practice Percentage {{ form.primary_state_percentage }}%
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.secondary_state_coverage.auto_id }}">Secondary State</label>
+				{{ form.secondary_state_coverage }} Practice {{ form.secondary_state_percentage }}%
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.secondary_state_percentage.errors }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<legend class="care-form-legend">Weekly Counts</legend>
+			<div class="pure-control-group">
+				<label for="{{ form.weekly_hours.auto_id }}">Working Hours</label>
+				{{ form.weekly_hours }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.weekly_patients.auto_id }}">Patients</label>
+				{{ form.weekly_patients }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.weekly_procedures.auto_id }}">Procedures</label>
+				{{ form.weekly_procedures }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.weekly_deliveries.auto_id }}">Deliveries</label>
+				{{ form.weekly_deliveries }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.weekly_reads.auto_id }}">Reads</label>
+				{{ form.weekly_reads }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<legend class="care-form-legend">Procedures</legend>
+			<div class="pure-control-group">
+				<label for="{{ form.bariatric_performs.auto_id }}"></label>
+				{{ form.bariatric_performs }} Perform Bariatric Procedures?
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.telemedicine_performs.auto_id }}"></label>
+				{{ form.telemedicine_performs }} Perform Telemedicine?
+			</div>
+			<BR>
+			<div class="pure-control-group">
+				<label for="{{ form.cosmetic_performs.auto_id }}"></label>
+				{{ form.cosmetic_performs }} Perform Cosmetic Surgery?
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.cosmetic_work_percentage.auto_id }}">Overall</label>
+				{{ form.cosmetic_work_percentage }}%
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.cosmetic_elective_percentage.auto_id }}">Elective</label>
+				{{ form.cosmetic_elective_percentage }}%
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.cosmetic_recon_percentage.auto_id }}">Reconstructive</label>
+				{{ form.cosmetic_recon_percentage }}%
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.cosmetic_recon_percentage.errors }}
+			</div>
+
+			<BR>
+
+			<div class="pure-control-group">
+				<label for="{{ form.laser_performs.auto_id }}"></label>
+				{{ form.laser_performs }} Perform Aesthetics or Laser Procedures?
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.laser_work_percentage.auto_id }}">Percentage</label>
+				{{ form.laser_work_percentage }}%
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.laser_work_percentage.errors }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.laser_note.auto_id }}">Describe</label>
+				{{ form.laser_note }}
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.laser_note.errors }}
+			</div>
+
+			<BR>
+
+			<div class="pure-control-group">
+				<label for="{{ form.correctional_performs.auto_id }}"></label>
+				{{ form.correctional_performs }} Practice in Correctional Facilities?
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.correctional_note.auto_id }}">Which States</label>
+				{{ form.correctional_note }}
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.correctional_note.errors }}
+			</div>
+
+			<BR>
+
+			<div class="pure-control-group">
+				<label for="{{ form.nursing_performs.auto_id }}"></label>
+				{{ form.nursing_performs }} Practice in Nursing Homes?
+			</div>
+	 		<div class="pure-control-group">
+				<label for="{{ form.nursing_work_percentage.auto_id }}">Percentage</label>
+				{{ form.nursing_work_percentage }}%
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.nursing_work_percentage.errors }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<legend class="care-form-legend">Additional Coverage</legend>
+			<div class="pure-control-group">
+				<label for="{{ form.entity_coverage.auto_id }}"></label>
+				{{ form.entity_coverage }} Coverage for your Entity or Allieds?
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.entity_coverage.errors }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.entity_note.auto_id }}">Names</label>
+				{{ form.entity_note }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.professional_coverage.auto_id }}"></label>
+				{{ form.professional_coverage }} Coverage for Medical Directors?
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.professional_coverage.errors }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.professional_note.auto_id }}">Names</label>
+				{{ form.professional_note }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<legend class="care-form-legend">History</legend>
+			<div class="pure-control-group">
+				<label for="{{ form.claims_last_10_years.auto_id }}">Number of Claims Last 10 Years</label>
+				{{ form.claims_last_10_years }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.open_claims.auto_id }}">Number of Claims Open</label>
+				{{ form.open_claims }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.closed_claims.auto_id }}">Number of Claims Closed</label>
+				{{ form.closed_claims }}
+			</div>
+			<div class="care-qq-field-error">
+				{{ form.closed_claims.errors }}
+			</div>
+
+			<div class="pure-control-group">
+				<label for="{{ form.board_actions_last_10_years.auto_id }}">Number of Board Actions Last 10 Years</label>
+				{{ form.board_actions_last_10_years }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.current_carrier.auto_id }}">Current Carrier</label>
+				{{ form.current_carrier }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.expiring_premium.auto_id }}">Expiring Premium $</label>
+				{{ form.expiring_premium }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.prior_acts_effective_date.auto_id }}">Effective Date</label>
+				{{ form.prior_acts_effective_date }}
+			</div>
+			<div class="pure-control-group">
+				<label for="{{ form.prior_acts_retroactive_date.auto_id }}">Retroactive Date</label>
+				{{ form.prior_acts_retroactive_date }}
+			</div>
+		</div>
+
+		<div class="care-form-card">
+			<br>
+			{% if form.premiums %}
+			<table class="pure-table pure-table-bordered">
+				<tbody>
+					<tr>
+						<td class="care-qq-header">
+							Quick Quote Premiums
+						</td>
+						<td colspan="3" align="center"><b>Deductibles</b></td>
+					</tr>
+				<tr>
+					<td><b>Limits</b></td>
+					{% for ded_value, ded_text in form.deductible.field.choices %}
+						<td>
+							{{ded_text}}
+						</td>
+					{% endfor %}
+				</tr>
+				{% for premium in form.premiums %}
+					{% if premium.deductible.value == 0 %}
+						<tr>
+							<td>
+								{{premium.limit}}
+							</td>
+					{% endif %}
+					<td>
+						${{premium.premium|floatformat:2|intcomma}}
+					</td>
+				{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+			<br>
+
+			<div class="pure-control-group">
+				<label>&nbsp;</label>
+				<button id="calculate" class="pure-button care-button-primary">
+					<i class="fa fa-calculator"></i> Calculate Premiums
+				</button>
+			</div>
+			<div class="pure-control-group">
+				<label>&nbsp;</label>
+				<button id="save" class="pure-button care-button-primary">
+					<i class="fa fa-futbol-o"></i> Request Full Quote &nbsp;
+				</button>
+			</div>
+			{{ form.clicked_button }}
+		</div>
+	</fieldset>
+</form>
+
+<div class="small-break"></div>
+<script>
+	//$('.bob').hide();
+
+	$("button.care-button-primary").click(function( event ) {
+		//event.preventDefault();
+
+		$('#id_clicked_button').val(this.id);
+		//$('.bob').show();
+	});
+</script>
+{% endblock %}
